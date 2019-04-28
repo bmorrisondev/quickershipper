@@ -1,12 +1,12 @@
 exports.validateEventBodyType = async(eventBody) => {
     try {
-        let stringConstructor = "string".constructor;
+        let stringConstructor = 'string'.constructor
         if(eventBody.constructor == stringConstructor) {
-            return JSON.parse(eventBody);
+            return JSON.parse(eventBody)
         } else {
-            return eventBody;
+            return eventBody
         }
     } catch (exc) {
-        console.log(exc);
+        console.log(exc)
     }
 }

@@ -1,17 +1,21 @@
-const Easypost = require('@easypost/api');
-const easypostApi = new Easypost(process.env.EASYPOST_KEY);
-const requestBodyParser = require('../utilities/requestBodyParser');
+const Easypost = require('@easypost/api')
+const easypostApi = new Easypost(process.env.EASYPOST_KEY)
+const requestBodyParser = require('../utilities/requestBodyParser')
 
-exports.createParcels = async(event, context) => {
-    let requestBody = await requestBodyParser.validateEventBodyType(event.body);
+exports.createParcels = async(event) => {
+    console.log('addressController.createParcels start ')
 
-    let parcelPromises = [];
-    
+    let requestBody = await requestBodyParser.validateEventBodyType(event.body)
+
+    console.log(`createParcels requestBody: ${JSON.stringify(requestBody)}`)
+
+    let parcelPromises = []
+
     for(let i = 0; i < requestBody.length; i++) {
-        parcelPromises.push(createParcel(requestBody[i]));
+        parcelPromises.push(createParcel(requestBody[i]))
     }
-    
-    return await Promise.all(parcelPromises);
+
+    return await Promise.all(parcelPromises)
 }
 
 function createParcel(parcel) {
@@ -21,16 +25,16 @@ function createParcel(parcel) {
             width: parcel.widthIn,
             height: parcel.heightIn,
             weight: parcel.weightOz
-          });
-          
-          easypostParcel.save()
+        })
+
+        easypostParcel.save()
             .then((data) => {
-                parcel.epParcel = data;
-                resolve(parcel);
+                parcel.epParcel = data
+                resolve(parcel)
             })
             .catch((err) => {
-                parcel.error = err; 
-                reject(parcel);
-            });
+                parcel.error = err
+                reject(parcel)
+            })
     })
 }

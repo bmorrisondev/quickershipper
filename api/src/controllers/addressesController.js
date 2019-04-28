@@ -1,17 +1,21 @@
-const Easypost = require('@easypost/api');
-const easypostApi = new Easypost(process.env.EASYPOST_KEY);
-const requestBodyParser = require('../utilities/requestBodyParser');
+const Easypost = require('@easypost/api')
+const easypostApi = new Easypost(process.env.EASYPOST_KEY)
+const requestBodyParser = require('../utilities/requestBodyParser')
 
-exports.validateAddresses = async(event, context) => {
-    let requestBody = await requestBodyParser.validateEventBodyType(event.body);
-    
-    let addressPromises = [];
-    
+exports.validateAddresses = async(event) => {
+    console.log('addressController.validateAddresses start ')
+
+    let requestBody = await requestBodyParser.validateEventBodyType(event.body)
+
+    console.log(`validateAddresses requestBody: ${JSON.stringify(requestBody)}`)
+
+    let addressPromises = []
+
     for(let i = 0; i < requestBody.length; i++) {
-        addressPromises.push(validateAddress(requestBody[i]));
+        addressPromises.push(validateAddress(requestBody[i]))
     }
-    
-    return await Promise.all(addressPromises);
+
+    return await Promise.all(addressPromises)
 }
 
 function validateAddress(address) {
@@ -24,16 +28,16 @@ function validateAddress(address) {
             zip: address.zip,
             country: 'US',
             name: address.name
-        });
+        })
 
         easypostAddress.save()
             .then((addr) => {
-                address.epAddress = addr;
-                resolve(address);
+                address.epAddress = addr
+                resolve(address)
             })
             .catch((err) => {
-                address.error = err; 
-                reject(address);
+                address.error = err
+                reject(address)
             })
     })
 }
