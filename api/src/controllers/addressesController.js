@@ -37,6 +37,7 @@ function validateAddress(address) {
                 resolve(address)
             })
             .catch((err) => {
+                console.log(`validateAddress failed with error: ${JSON.stringify(err)}`)
                 address.error = err
                 reject(address)
             })

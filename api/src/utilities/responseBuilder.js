@@ -14,5 +14,6 @@ exports.error = async(message) => {
     let errorObject = {
         message: message
     }
+    console.log(JSON.stringify(errorObject))
     return this.build(500, errorObject)
 }
