@@ -64,7 +64,7 @@
 
                     <v-list-tile-content>
                         <v-list-tile-title>Send Feedback</v-list-tile-title>
-                        <v-list-tile-sub-title>We appreciate any feedback to make Quickershipper better!</v-list-tile-sub-title>
+                        <v-list-tile-sub-title>We appreciate any feedback to make Quickershipper better! (Coming soon)</v-list-tile-sub-title>
                     </v-list-tile-content>
                 </v-list-tile>
             </v-list>
