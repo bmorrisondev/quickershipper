@@ -27,7 +27,7 @@ export default {
     data: function () {
         return {
             isDisplayed: true,
-            warningText: `This software is in beta. By acknowledging this warning,
+            warningText: `THIS APP IS FOR DEMO PURPOSES ONLY. By using this web app,
                 you agree that you are using this software at your own risk and
                 that the developer may not be held liable for any damages or
                 unexpected outcomes of using this software. If you do not
