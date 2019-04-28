@@ -5,11 +5,11 @@ const requestBodyParser = require('../utilities/requestBodyParser')
 const paymentsController = require('./paymentsController')
 
 exports.createShipments = async(event) => {
-    console.log('shipmentsControlleer.createShipments start ')
+    console.log('shipmentsController.createShipments start ')
 
     let requestBody = await requestBodyParser.validateEventBodyType(event.body)
 
-    console.log(`createParcels requestBody: ${JSON.stringify(requestBody)}`)
+    console.log(`createShipments requestBody: ${JSON.stringify(requestBody)}`)
 
     let promises = []
 
@@ -19,6 +19,7 @@ exports.createShipments = async(event) => {
         promises.push(createShipmentPromise)
     }
 
+    console.log('shipmentsController.createShipmentss returning ')
     return await Promise.all(promises)
 }
 

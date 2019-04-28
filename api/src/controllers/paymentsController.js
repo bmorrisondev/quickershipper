@@ -12,6 +12,7 @@ exports.createCharge = async(cardToken, amount, description) => {
         }
 
         console.log('Charging card: ' + JSON.stringify(theCharge))
+
         stripe.charges.create(theCharge, (err, x) => {
             if(err) {
                 console.log('err on payments controller: ' + JSON.stringify(err))

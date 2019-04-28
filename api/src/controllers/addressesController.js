@@ -15,6 +15,7 @@ exports.validateAddresses = async(event) => {
         addressPromises.push(validateAddress(requestBody[i]))
     }
 
+    console.log('addressController.validateAddresses returning ')
     return await Promise.all(addressPromises)
 }
 

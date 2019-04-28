@@ -3,7 +3,7 @@ const easypostApi = new Easypost(process.env.EASYPOST_KEY)
 const requestBodyParser = require('../utilities/requestBodyParser')
 
 exports.createParcels = async(event) => {
-    console.log('addressController.createParcels start ')
+    console.log('parcelsController.createParcels start ')
 
     let requestBody = await requestBodyParser.validateEventBodyType(event.body)
 
@@ -15,6 +15,7 @@ exports.createParcels = async(event) => {
         parcelPromises.push(createParcel(requestBody[i]))
     }
 
+    console.log('parcelsController.createParcels returning ')
     return await Promise.all(parcelPromises)
 }
 
